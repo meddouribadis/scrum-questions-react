@@ -1,5 +1,27 @@
 import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import scrumQuestions from './utils/library';
+
+function ScrumQuestion() {
+  const [scrumQuestion, setScrumQuestion] = useState(() => {
+    const randomIndex = Math.floor(Math.random() * scrumQuestions.length);
+    return scrumQuestions[randomIndex];
+  });
+
+  function handleClick() {
+    const randomIndex = Math.floor(Math.random() * scrumQuestions.length);
+    const randomString = scrumQuestions[randomIndex];
+    setScrumQuestion(randomString);
+  }
+
+  return (
+    <div>
+      <p>{scrumQuestion}</p>
+      <button className='button-4' onClick={handleClick}>Nouvelle question</button>
+    </div>
+  )
+}
 
 function App() {
   return (
@@ -7,16 +29,8 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          <ScrumQuestion />
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
       </header>
     </div>
   );
